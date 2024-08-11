@@ -1,0 +1,4 @@
+pillow
+pyocr
+deep-translator
+pyperclip
