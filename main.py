@@ -36,6 +36,14 @@ parser.add_argument(
     choices=["none", "original", "translated"],
     help="Copy original text or translated text to clipboard",
 )
+parser.add_argument(
+    "-l",
+    "--layout",
+    type=int,
+    default=4,
+    choices=range(14),
+    help="Tesseract layout mode (0-13)",
+)
 args = parser.parse_args()
 
 # Check if there is anything to do
@@ -59,7 +67,7 @@ if len(tools) == 0:
 tool = tools[0]
 
 # Extract text from image
-builder = pyocr.builders.TextBuilder(tesseract_layout=3)
+builder = pyocr.builders.TextBuilder(tesseract_layout=args.layout)
 text = tool.image_to_string(
     image,
     lang=args.source,
